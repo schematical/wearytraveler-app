@@ -17,4 +17,15 @@
   <div class="playing-card" *ngFor="let card of cards" [style.left.px]="getCardLeft(card)" [style.bottom.px]="getCardBottom(card)" (pan)="panCard($event, card);" (panEnd)="panEndCard($event, card);"  >
 
   </div>
+  <div class="display-card" *ngIf="displayCard" [style.left.px]="displayCard.dispPos.left" [style.top.px]="displayCard.dispPos.top">
+    <div class="display-card-inside">
+      <div class="display-card-suit">
+        {{displayCard.number}} {{displayCard.suit}}
+      </div>
+      <div class="display-card-rule">
+        {{displayCard.rule}}
+      </div>
+    </div>
+
+  </div>
 </ion-content>

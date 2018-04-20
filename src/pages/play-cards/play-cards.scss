@@ -7,3 +7,30 @@ page-play-cards {
   height:258Px;
   background-image: url('/assets/imgs/card-back.jpg');
 }
+.display-card{
+  position:absolute;
+  width: 80%;
+  height:80%;
+  border: thin red solid;
+}
+.display-card-inside{
+  width:100%;
+  height:100%;
+  position:relative;
+  border: thin green solid;
+
+}
+.display-card-suit{
+  position:absolute;
+  top: 0Px;
+  left: 0Px;
+  width:20%;
+  height: 20%;
+}
+.display-card-rule{
+  position:absolute;
+  top: 20%;
+  left: 20%;
+  width:60%;
+  height: 60%;
+}
