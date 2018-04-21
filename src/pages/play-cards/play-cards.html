@@ -17,9 +17,9 @@
   <!--<span ion-fixed style="height: 100%; width: 100%; position:relative;">-->
 
 
-    <div class="playing-card" *ngFor="let card of cards" [style.left.px]="getCardLeft(card)" [style.bottom.px]="getCardBottom(card)" (pan)="panCard($event, card);" (panEnd)="panEndCard($event, card);"  [style.width.px]="card.width" [style.height.px]="card.height" >
+    <playing-card  *ngFor="let card of cards" [card]="card">
 
-    </div>
+    </playing-card>
     <div class="display-card" *ngIf="displayCard" [style.left.px]="displayCard.dispPos.left" [style.top.px]="displayCard.dispPos.top"  >
       <div class="display-card-inside">
         <div class="display-card-suit">

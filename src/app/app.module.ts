@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP } from '@ionic-native/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import { ComponentsModule } from '../components/components.module';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -30,7 +30,8 @@ import { CardsManagerProvider } from '../providers/cards-manager/cards-manager';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

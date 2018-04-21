@@ -46,7 +46,7 @@ export class PlayCardsPage {
 
           card.bottom = this.screenHeight * .1;
           card.left = card.width * .5 * i;
-
+          card._parent = this;
         })
       })
       .catch(error => {
