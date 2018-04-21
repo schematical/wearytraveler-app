@@ -30,22 +30,13 @@ export class PlayingCardComponent {
     let hammer = new window['Hammer'](this.element.nativeElement);
     hammer.get('pan').set({ direction: window['Hammer'].DIRECTION_ALL });
 
-    hammer.on('pan', (ev) => {
-      this.handlePan(ev);
+    hammer.on('pan', (e) => {
+      this.card._parent.panCard(e, this.card);
+    });
+
+    hammer.on('panend', (e) => {
+      this.card._parent.panEndCard(e, this.card);
     });
 
   }
-
-  handlePan(ev){
-
-    let newLeft = ev.center.x;
-    let newTop = ev.center.y;
-
-    this.domCtrl.write(() => {
-      this.renderer.setElementStyle(this.element.nativeElement, 'left', newLeft + 'px');
-      this.renderer.setElementStyle(this.element.nativeElement, 'top', newTop + 'px');
-    });
-
-  }
-
 }

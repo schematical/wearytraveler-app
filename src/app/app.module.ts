@@ -15,7 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GameStateManagerProvider } from '../providers/game-state-manager/game-state-manager';
 import { CardsManagerProvider } from '../providers/cards-manager/cards-manager';
-
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { CardsManagerProvider } from '../providers/cards-manager/cards-manager';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    ComponentsModule
+    ComponentsModule,
+    CommonModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

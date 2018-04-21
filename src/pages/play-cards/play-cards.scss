@@ -12,6 +12,9 @@ page-play-cards {
   -moz-background-size: cover;
   -o-background-size: cover;
 }
+.is-panning{
+  border:thick red solid;
+}
 .display-card{
   position:absolute;
   width: 80%;

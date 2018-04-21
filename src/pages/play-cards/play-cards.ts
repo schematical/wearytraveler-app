@@ -1,6 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CardsManagerProvider } from '../../providers/cards-manager/cards-manager';
+
 import {Platform} from 'ionic-angular';
 /**
  * Generated class for the PlayCardsPage page.
@@ -73,12 +74,12 @@ export class PlayCardsPage {
       return card.bottom;
     }
     let bottom = card.bottom + card.panStart.yDiff;
-    console.log(card.suit, card.number, ' - > ', bottom);
+    //console.log(card.suit, card.number, ' - > ', bottom);
     return bottom;
   }
   panCard(e, card) {
 
-    console.log('panCard', e);
+
     let newLeft = e.center.x;
     let newTop = e.center.y;
 
@@ -94,6 +95,7 @@ export class PlayCardsPage {
     }
     card.panStart.xDiff = card.panStart.left - newLeft;
     card.panStart.yDiff = card.panStart.top - newTop;
+    console.log(newTop, newLeft, ' --- x ' + Math.abs(card.panStart.xDiff) + ' > y ' + Math.abs(card.panStart.yDiff));
     if(Math.abs(card.panStart.xDiff) > Math.abs(card.panStart.yDiff)){
       //Move all cards
       card.panStart.yDiff = 0;
@@ -101,14 +103,15 @@ export class PlayCardsPage {
       card.panStart.xDiff = 0;
       //Draw this card
       //console.log(Math.abs(card.panStart.yDiff) + ' > ' + (this.screenHeight * .4));
-      if(Math.abs(card.panStart.yDiff) > (this.screenHeight * .4)){
+      if(Math.abs(card.panStart.yDiff) > (this.screenHeight * .6)){
           //this.selectCard(card);
+        console.log("Selected!");
       }
     }
 
   }
   panEndCard(e, card) {
-
+console.log('panEndCard', card.suit + ' - ' + card.number)
    /* let newLeft = e.center.x;
     let newTop = e.center.y;*/
     this.xOffset -= card.panStart.xDiff;

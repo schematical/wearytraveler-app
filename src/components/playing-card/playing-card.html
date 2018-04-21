@@ -3,7 +3,10 @@
      [style.left.px]="card._parent.getCardLeft(card)"
      [style.bottom.px]="card._parent.getCardBottom(card)"
      [style.width.px]="card.width"
-     [style.height.px]="card.height" >
-      <!--(pan)="panCard($event, card);" (panEnd)="panEndCard($event, card);"-->
+     [style.height.px]="card.height"
+     [ngClass]="{'is-panning': card.panStart ? true : false }"
+     (panEnd)="card._parent.panEndCard($event, card);"
+>
+      <!--(pan)="panCard($event, card);" -->
 
 </div>
