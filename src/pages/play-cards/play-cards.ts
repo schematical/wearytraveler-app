@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CardsManagerProvider } from '../../providers/cards-manager/cards-manager';
 import {Platform} from 'ionic-angular';
@@ -15,6 +15,8 @@ import {Platform} from 'ionic-angular';
   templateUrl: 'play-cards.html',
 })
 export class PlayCardsPage {
+  CARD_WIDTH = 182;
+  CARD_HEIGHT = 254;
   xOffset:number = 0;
   selectedCard: any = null;
   cards:Array<any> = null;
@@ -22,12 +24,16 @@ export class PlayCardsPage {
   screenHeight = 0;
   screenWidth = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cardsManager: CardsManagerProvider, platform: Platform) {
+  constructor(public element: ElementRef, public navCtrl: NavController, public navParams: NavParams, public cardsManager: CardsManagerProvider, platform: Platform) {
     platform.ready().then((readySource) => {
       console.log('Width: ' + platform.width());
       console.log('Height: ' + platform.height());
       this.screenWidth = platform.width();
       this.screenHeight = platform.height();
+
+      let hammer = new window['Hammer'](this.element.nativeElement);
+      hammer.get('pan').set({ direction: window['Hammer'].DIRECTION_ALL });
+
     });
 
     this.cardsManager.listCards(this.navParams.get('deck'))
@@ -35,8 +41,12 @@ export class PlayCardsPage {
 
         this.cards = cards;
         this.cards.forEach((card, i)=>{
-          card.bottom = 100;
-          card.left = 100 * i;
+          card.width = this.screenWidth * .8;
+          card.height = card.width / this.CARD_WIDTH * this.CARD_HEIGHT;
+
+          card.bottom = this.screenHeight * .1;
+          card.left = card.width * .5 * i;
+
         })
       })
       .catch(error => {
@@ -63,12 +73,12 @@ export class PlayCardsPage {
       return card.bottom;
     }
     let bottom = card.bottom + card.panStart.yDiff;
-    //console.log(card.suit, card.number, ' - > ', bottom);
+    console.log(card.suit, card.number, ' - > ', bottom);
     return bottom;
   }
   panCard(e, card) {
 
-    //console.log('card', e);
+    console.log('panCard', e);
     let newLeft = e.center.x;
     let newTop = e.center.y;
 
@@ -90,8 +100,9 @@ export class PlayCardsPage {
     }else{
       card.panStart.xDiff = 0;
       //Draw this card
-      if(Math.abs(card.panStart.yDiff) > 200){
-          this.selectCard(card);
+      //console.log(Math.abs(card.panStart.yDiff) + ' > ' + (this.screenHeight * .4));
+      if(Math.abs(card.panStart.yDiff) > (this.screenHeight * .4)){
+          //this.selectCard(card);
       }
     }
 
@@ -103,8 +114,6 @@ export class PlayCardsPage {
     this.xOffset -= card.panStart.xDiff;
     card.panStart = null;
     this.selectedCard = null;
-
-
 
   }
   selectCard(card){
@@ -122,6 +131,7 @@ export class PlayCardsPage {
       return;
     }
    if(this.displayCard.dispPos.phase == 0) {
+     this.displayCard.bottom -= this.screenHeight / 15;
      this.displayCard.dispPos.top -= (this.screenHeight * .9) / 20;
      if(this.displayCard.dispPos.top < this.screenHeight * .1){
        this.displayCard.dispPos.phase = 1;
@@ -140,7 +150,7 @@ export class PlayCardsPage {
        this.displayCard = null;
      }
    }
-   console.log("TICK: ",  this.displayCard &&  this.displayCard.dispPos.top);
+   //console.log("TICK: ",  this.displayCard &&  this.displayCard.dispPos.top);
   }
 
 }

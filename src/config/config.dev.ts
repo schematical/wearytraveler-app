@@ -1,3 +1,3 @@
 export const ENV = {
-  API_ENDPOINT: 'http://localhost:3000'
+  API_ENDPOINT: 'https://lab.schematical.com'//http://localhost:3000'
 };

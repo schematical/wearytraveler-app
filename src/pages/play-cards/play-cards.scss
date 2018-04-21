@@ -1,11 +1,16 @@
 page-play-cards {
 
 }
+.no-scroll .scroll-content{
+  overflow: hidden;
+}
 .playing-card {
   position:absolute;
-  width:  183px;
-  height:258Px;
-  background-image: url('/assets/imgs/card-back.jpg');
+
+  background-image: url('../assets/imgs/card-back.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 .display-card{
   position:absolute;
