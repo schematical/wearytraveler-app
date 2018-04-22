@@ -95,25 +95,24 @@ export class PlayCardsPage {
     }
     card.panStart.xDiff = card.panStart.left - newLeft;
     card.panStart.yDiff = card.panStart.top - newTop;
-    console.log(newTop, newLeft, ' --- x ' + Math.abs(card.panStart.xDiff) + ' > y ' + Math.abs(card.panStart.yDiff));
+    //console.log(newTop, newLeft, ' --- x ' + Math.abs(card.panStart.xDiff) + ' > y ' + Math.abs(card.panStart.yDiff));
     if(Math.abs(card.panStart.xDiff) > Math.abs(card.panStart.yDiff)){
       //Move all cards
       card.panStart.yDiff = 0;
     }else{
       card.panStart.xDiff = 0;
       //Draw this card
-      //console.log(Math.abs(card.panStart.yDiff) + ' > ' + (this.screenHeight * .4));
       if(Math.abs(card.panStart.yDiff) > (this.screenHeight * .6)){
-          //this.selectCard(card);
-        console.log("Selected!");
+        console.log("Selected! ", Math.abs(card.panStart.yDiff) + ' > ' + (this.screenHeight * .6));
+        this.selectCard(card);
       }
     }
 
   }
   panEndCard(e, card) {
-console.log('panEndCard', card.suit + ' - ' + card.number)
    /* let newLeft = e.center.x;
     let newTop = e.center.y;*/
+
     this.xOffset -= card.panStart.xDiff;
     card.panStart = null;
     this.selectedCard = null;
