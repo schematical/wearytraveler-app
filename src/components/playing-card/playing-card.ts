@@ -35,6 +35,7 @@ export class PlayingCardComponent {
     });
 
     hammer.on('panend', (e) => {
+      console.log('panend');
       this.card._parent.panEndCard(e, this.card);
     });
     hammer.on('pancancel', (e) => {

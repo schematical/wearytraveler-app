@@ -93,17 +93,19 @@ export class PlayCardsPage {
       }
       return;
     }
-    card.panStart.xDiff = card.panStart.left - newLeft;
-    card.panStart.yDiff = card.panStart.top - newTop;
-    //console.log(newTop, newLeft, ' --- x ' + Math.abs(card.panStart.xDiff) + ' > y ' + Math.abs(card.panStart.yDiff));
+    card.panStart.xDiff = e.deltaX * -1;//card.panStart.left - newLeft;
+    card.panStart.yDiff = e.deltaY * -1;//card.panStart.top - newTop;
+
+    console.log(card.panStart.left + ' / ' + card.panStart.top, ' --- x ' + Math.abs(card.panStart.xDiff) + ' > y ' + Math.abs(card.panStart.yDiff));
     if(Math.abs(card.panStart.xDiff) > Math.abs(card.panStart.yDiff)){
       //Move all cards
       card.panStart.yDiff = 0;
     }else{
       card.panStart.xDiff = 0;
       //Draw this card
-      if(Math.abs(card.panStart.yDiff) > (this.screenHeight * .6)){
-        console.log("Selected! ", Math.abs(card.panStart.yDiff) + ' > ' + (this.screenHeight * .6));
+
+      if(Math.abs(card.panStart.yDiff) > (this.screenHeight * .4)){
+        console.log("Selected! ", Math.abs(card.panStart.yDiff) + ' > ' + (this.screenHeight * .4));
         this.selectCard(card);
       }
     }
@@ -112,9 +114,10 @@ export class PlayCardsPage {
   panEndCard(e, card) {
    /* let newLeft = e.center.x;
     let newTop = e.center.y;*/
-
-    this.xOffset -= card.panStart.xDiff;
-    card.panStart = null;
+    if(card.panStart) {
+      this.xOffset -= card.panStart.xDiff;
+      card.panStart = null;
+    }
     this.selectedCard = null;
 
   }
