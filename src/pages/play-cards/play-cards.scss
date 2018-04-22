@@ -15,6 +15,13 @@ page-play-cards {
 .is-panning{
   border:thick red solid;
 }
+#touch-listener{
+  position:absolute;
+  height:100%;
+  width:100%;
+  background: rgba(0%,0%,100%,.3);
+  z-index: 1000;
+}
 .display-card{
   position:absolute;
   width: 80%;

@@ -77,22 +77,35 @@ export class PlayCardsPage {
     //console.log(card.suit, card.number, ' - > ', bottom);
     return bottom;
   }
-  panCard(e, card) {
-
-
+  panStartCard(e){
     let newLeft = e.center.x;
     let newTop = e.center.y;
-
-    if(!card.panStart){
-      this.selectedCard = card;
-      card.panStart = {
-        left: newLeft,
-        top: newTop,
-        xDiff: 0,
-        yDiff: 0
-      }
+    //if(!card) {
+    let card = this.getCardByCoords(newLeft, newTop);
+    //}
+    if(!card){
+      console.log("No card found");
       return;
     }
+
+    this.selectedCard = card;
+    console.log("Selected: " + this.selectedCard.number + ' ' + this.selectedCard.suit);
+    card.panStart = {
+      left: newLeft,
+      top: newTop,
+      xDiff: 0,
+      yDiff: 0
+    }
+    return;
+
+  }
+  panCard(e) {
+    let card = this.selectedCard;
+    if(!card){
+      console.log("PANNING - no `this.selectedCard`");
+      return;
+    }
+
     card.panStart.xDiff = e.deltaX * -1;//card.panStart.left - newLeft;
     card.panStart.yDiff = e.deltaY * -1;//card.panStart.top - newTop;
 
@@ -111,15 +124,38 @@ export class PlayCardsPage {
     }
 
   }
-  panEndCard(e, card) {
-   /* let newLeft = e.center.x;
-    let newTop = e.center.y;*/
+  panEndCard(e, card?) {
+
+    if(!card) {
+      let newLeft = e.center.x;
+      let newTop = e.center.y;
+      card = this.getCardByCoords(newLeft, newTop);
+    }
+    if(!card){
+      return;
+    }
     if(card.panStart) {
       this.xOffset -= card.panStart.xDiff;
       card.panStart = null;
     }
     this.selectedCard = null;
 
+  }
+  getCardByCoords(x,y){
+    let cards = [];
+    this.cards.forEach((card)=>{
+      let baseX = this.getCardLeft(card);
+      let baseY = this.getCardBottom(card);
+      if(
+        x > baseX &&
+        x < baseX + card.width
+       /* y > (this.screenHeight - baseY + card.height &&
+        y < this.screenHeight - baseY */
+      ){
+        cards.push(card);
+      }
+    })
+    return cards[cards.length - 1] || null;
   }
   selectCard(card){
     this.panEndCard(null, card);

@@ -22,12 +22,9 @@ export class PlayingCardComponent {
 
 
   ngAfterViewInit() {
+    
 
-    /*this.renderer.setElementStyle(this.element.nativeElement, 'position', 'absolute');
-    this.renderer.setElementStyle(this.element.nativeElement, 'left', this.startLeft + 'px');
-    this.renderer.setElementStyle(this.element.nativeElement, 'top', this.startTop + 'px');*/
-
-    let hammer = new window['Hammer'](this.element.nativeElement);
+   /* let hammer = new window['Hammer'](this.element.nativeElement);
     hammer.get('pan').set({ direction: window['Hammer'].DIRECTION_ALL });
 
     hammer.on('pan', (e) => {
@@ -41,7 +38,7 @@ export class PlayingCardComponent {
     hammer.on('pancancel', (e) => {
       console.log('pancancel');
       this.card._parent.panEndCard(e, this.card);
-    });
+    });*/
 
   }
 }
