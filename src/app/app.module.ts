@@ -11,6 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ListDecksPage } from '../pages/list-decks/list-decks';
 import { ListPlayersPage } from '../pages/list-players/list-players';
 import { PlayCardsPage } from '../pages/play-cards/play-cards';
+import { GameOverPage } from '../pages/game-over/game-over';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GameStateManagerProvider } from '../providers/game-state-manager/game-state-manager';
@@ -26,7 +27,8 @@ import { CommonModule } from '@angular/common';
     TabsPage,
     ListDecksPage,
     ListPlayersPage,
-    PlayCardsPage
+    PlayCardsPage,
+    GameOverPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { CommonModule } from '@angular/common';
     TabsPage,
     ListDecksPage,
     ListPlayersPage,
-    PlayCardsPage
+    PlayCardsPage,
+    GameOverPage
   ],
   providers: [
     StatusBar,

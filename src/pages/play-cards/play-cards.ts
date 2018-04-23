@@ -1,6 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CardsManagerProvider } from '../../providers/cards-manager/cards-manager';
+import { GameOverPage } from '../game-over/game-over';
 
 import {Platform} from 'ionic-angular';
 /**
@@ -48,6 +49,7 @@ export class PlayCardsPage {
           card.bottom = this.screenHeight * .1;
           card.left = card.width * .5 * i;
           card._parent = this;
+          card.hasBeenDrawn = false;
         })
       })
       .catch(error => {
@@ -147,6 +149,7 @@ export class PlayCardsPage {
       let baseX = this.getCardLeft(card);
       let baseY = this.getCardBottom(card);
       if(
+        !card.hasBeenDrawn &&
         x > baseX &&
         x < baseX + card.width
        /* y > (this.screenHeight - baseY + card.height &&
@@ -159,13 +162,27 @@ export class PlayCardsPage {
   }
   selectCard(card){
     this.panEndCard(null, card);
+    card.hasBeenDrawn = true;
     this.displayCard = card;
+
     this.displayCard.dispPos = {
       top:this.screenHeight,
       left: this.screenWidth * .1,
       phase:0,
       wait:0
     }
+  }
+  checkEndGame(){
+    let stillHasCardsToBeDrawn = false;
+    this.cards.forEach((card)=>{
+      if(!card.hasBeenDrawn){
+        stillHasCardsToBeDrawn = true;
+      }
+    })
+    if(stillHasCardsToBeDrawn){
+      return;
+    }
+    this.navCtrl.push(GameOverPage, { });
   }
   tick(){
     if(!this.displayCard){
@@ -189,6 +206,7 @@ export class PlayCardsPage {
        //this.displayCard.dispPos.phase = 3;
        this.displayCard.dispPos = null;
        this.displayCard = null;
+       this.checkEndGame();
      }
    }
    //console.log("TICK: ",  this.displayCard &&  this.displayCard.dispPos.top);
