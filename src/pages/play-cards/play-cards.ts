@@ -211,5 +211,8 @@ export class PlayCardsPage {
    }
    //console.log("TICK: ",  this.displayCard &&  this.displayCard.dispPos.top);
   }
+  endGame(){
+    this.navCtrl.push(GameOverPage, { });
+  }
 
 }

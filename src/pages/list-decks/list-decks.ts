@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CardsManagerProvider } from '../../providers/cards-manager/cards-manager';
 import { ListPlayersPage } from '../list-players/list-players'
+import { ListCardsPage } from '../list-cards/list-cards'
 /**
  * Generated class for the ListDecksPage page.
  *
@@ -36,5 +37,7 @@ export class ListDecksPage {
   playDeck(deck){
     this.navCtrl.push(ListPlayersPage, { deck: deck._id })
   }
-
+  listCards(deck){
+    this.navCtrl.push(ListCardsPage, { deck: deck._id })
+  }
 }

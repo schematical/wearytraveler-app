@@ -19,8 +19,10 @@
 
   <ion-list>
     <ion-item-sliding *ngFor="let deck of decks">
-      <ion-item (click)="playDeck(deck)">>
+      <ion-item >
         {{deck.name}}
+        <button ion-button item-end (click)="playDeck(deck)">Play</button>
+        <button ion-button item-end (click)="listCards(deck)">View</button>
       </ion-item>
       <!--<ion-item-options side="left">
         <button ion-button color="primary">
