@@ -1,6 +1,7 @@
 import { HTTP } from '@ionic-native/http';
 import { Injectable } from '@angular/core';
 import { ENV } from '@environment';
+import { AuthProvider } from '../auth/auth';
 
 /*
   Generated class for the CardsManagerProvider provider.
@@ -11,7 +12,7 @@ import { ENV } from '@environment';
 @Injectable()
 export class CardsManagerProvider {
 
-  constructor(public http: HTTP) {
+  constructor(public http: HTTP, public authProvider: AuthProvider) {
     console.log('Hello CardsManagerProvider Provider');
   }
   listDecks(){
@@ -34,6 +35,20 @@ export class CardsManagerProvider {
       .then((data)=>{
         return JSON.parse(data.data)
       })
+  }
+  createDeck(deck){
+    this.http.setHeader('*', 'Authorization', 'Bearer ' + this.authProvider.getBearer());
+    return this.http.post(ENV.API_ENDPOINT + '/decks', deck, {})
+    .then((data)=>{
+      return JSON.parse(data.data)
+    })
+  }
+  saveCard(card){
+    this.http.setHeader('*', 'Authorization', 'Bearer ' + this.authProvider.getBearer());
+    return this.http.post(ENV.API_ENDPOINT + '/decks/' + card.deck + '/cards', card,{ })
+    .then((data)=>{
+      return JSON.parse(data.data)
+    })
   }
 
 }

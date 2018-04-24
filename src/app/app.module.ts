@@ -22,6 +22,8 @@ import { GameStateManagerProvider } from '../providers/game-state-manager/game-s
 import { CardsManagerProvider } from '../providers/cards-manager/cards-manager';
 import { CommonModule } from '@angular/common';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { AuthProvider } from '../providers/auth/auth';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GameStateManagerProvider,
     CardsManagerProvider,
-    SocialSharing
+    SocialSharing,
+    AuthProvider,
+    NativeStorage
   ]
 })
 export class AppModule {}

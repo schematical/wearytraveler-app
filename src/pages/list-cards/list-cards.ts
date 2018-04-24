@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CardsManagerProvider } from '../../providers/cards-manager/cards-manager';
+import { AuthPage } from '../auth/auth';
+import { AuthProvider } from '../../providers/auth/auth';
 import { EditCardPage } from '../edit-card/edit-card';
-
 /**
  * Generated class for the ListCardsPage page.
  *
@@ -17,7 +18,7 @@ import { EditCardPage } from '../edit-card/edit-card';
 })
 export class ListCardsPage {
   cards = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public cardsManager: CardsManagerProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public cardsManager: CardsManagerProvider, public auth: AuthProvider) {
 
     this.cardsManager.listCards(this.navParams.get('deck'))
       .then(cards => {
@@ -38,8 +39,21 @@ export class ListCardsPage {
     console.log('ionViewDidLoad ListCardsPage');
   }
   edit(card){
-    card._isEditing = true;
-    this.navCtrl.push(EditCardPage, { card: card})
+    let nextData = { card: card}
+
+
+    this.auth.getUser()
+      .then((user) => {
+        if (!user) {
+          return this.navCtrl.push(AuthPage, {nextPage: EditCardPage, nextData: nextData})
+        }
+        return this.navCtrl.push(EditCardPage, nextData);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+
+
   }
 
 
