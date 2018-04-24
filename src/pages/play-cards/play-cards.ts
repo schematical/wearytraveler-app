@@ -17,8 +17,8 @@ import {Platform} from 'ionic-angular';
   templateUrl: 'play-cards.html',
 })
 export class PlayCardsPage {
-  CARD_WIDTH = 182;
-  CARD_HEIGHT = 254;
+  CARD_WIDTH = 668;
+  CARD_HEIGHT = 871;
   xOffset:number = 0;
   selectedCard: any = null;
   cards:Array<any> = null;

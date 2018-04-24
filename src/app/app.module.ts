@@ -9,6 +9,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ListDecksPage } from '../pages/list-decks/list-decks';
+import { EditDeckPage } from '../pages/edit-deck/edit-deck';
 import { ListPlayersPage } from '../pages/list-players/list-players';
 import { PlayCardsPage } from '../pages/play-cards/play-cards';
 import { GameOverPage } from '../pages/game-over/game-over';
@@ -38,7 +39,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     GameOverPage,
     ListCardsPage,
     AuthPage,
-    EditCardPage
+    EditCardPage,
+    EditDeckPage
 
   ],
   imports: [
@@ -60,7 +62,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     GameOverPage,
     ListCardsPage,
     AuthPage,
-    EditCardPage
+    EditCardPage,
+    EditDeckPage
   ],
   providers: [
     StatusBar,

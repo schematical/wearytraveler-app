@@ -36,12 +36,21 @@ export class CardsManagerProvider {
         return JSON.parse(data.data)
       })
   }
-  createDeck(deck){
-    this.http.setHeader('*', 'Authorization', 'Bearer ' + this.authProvider.getBearer());
-    return this.http.post(ENV.API_ENDPOINT + '/decks', deck, {})
-    .then((data)=>{
-      return JSON.parse(data.data)
-    })
+  saveDeck(deck){
+    return this.authProvider.getBearer()
+      .then((bearer)=>{
+        if(!bearer){
+          throw new Error("Must be logged in to call this method");
+        }
+        let url = ENV.API_ENDPOINT + '/decks';
+        if(deck._id){
+          url = ENV.API_ENDPOINT + '/decks/' + deck._id
+        }
+        return this.http.post(url, deck, { 'Authorization': 'Bearer ' + bearer})
+        .then((data)=>{
+          return JSON.parse(data.data)
+        })
+      })
   }
   saveCard(card){
     return this.authProvider.getBearer()

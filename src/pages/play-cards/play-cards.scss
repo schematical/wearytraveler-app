@@ -7,10 +7,11 @@ page-play-cards {
 .playing-card {
   position:absolute;
 
-  background-image: url('../assets/imgs/card-back.jpg');
+  background: url('../assets/imgs/card-back.png') no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  background-size: cover;
 }
 .is-panning{
   border:thick red solid;
@@ -19,7 +20,7 @@ page-play-cards {
   position:absolute;
   height:100%;
   width:100%;
-  background: rgba(0%,0%,100%,.3);
+  //background: rgba(0%,0%,100%,.3);
   z-index: 1000;
 }
 .display-card{
