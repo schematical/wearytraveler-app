@@ -60,18 +60,25 @@ export class AuthProvider {
     });
   }
   getBearer() {
-    return new Promise((resolve, reject) => {
-      this.nativeStorage.getItem('bearer')
-        .then(
-          data => {
-            console.log(data)
-            if (!data || !data.bearer) {
-              return null;
-            }
-            return resolve(data.bearer);
-          },
-          reject
-        );
+    return this.nativeStorage.keys()
+      .then((keys)=>{
+
+        return new Promise((resolve, reject)=> {
+          if (_.indexOf(keys, 'bearer') === -1) {
+            return resolve(null);
+          }
+          this.nativeStorage.getItem('bearer')
+            .then(
+              data => {
+                console.log(data)
+                if (!data || !data.bearer) {
+                  return null;
+                }
+                return resolve(data.bearer);
+              },
+              reject
+            );
+        });
     })
   }
   setUser(user){
@@ -92,7 +99,6 @@ export class AuthProvider {
     })*/
     return this.nativeStorage.keys()
     .then((keys)=>{
-        console.log('keys', keys)
 
         return new Promise((resolve, reject)=> {
           if(_.indexOf(keys, 'user') === -1){

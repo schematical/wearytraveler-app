@@ -54,7 +54,14 @@ export class AuthPage {
       })
   }
   next(){
-    return this.navCtrl.push(this.nextPage, this.nextData);
+    this.navCtrl.pop()
+      .then(()=>{
+        return this.navCtrl.push(this.nextPage, this.nextData);
+      })
+      .catch((e)=>{
+        console.error(e);
+      })
+
   }
 
 }

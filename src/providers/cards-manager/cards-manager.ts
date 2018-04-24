@@ -44,11 +44,16 @@ export class CardsManagerProvider {
     })
   }
   saveCard(card){
-    this.http.setHeader('*', 'Authorization', 'Bearer ' + this.authProvider.getBearer());
-    return this.http.post(ENV.API_ENDPOINT + '/decks/' + card.deck + '/cards', card,{ })
-    .then((data)=>{
-      return JSON.parse(data.data)
-    })
+    return this.authProvider.getBearer()
+        .then((bearer)=>{
+          if(!bearer){
+            throw new Error("Must be logged in to call this method");
+          }
+          return this.http.post(ENV.API_ENDPOINT + '/decks/' + card.deck + '/cards', card,{ 'Authorization': 'Bearer ' + bearer})
+      })
+      .then((data)=>{
+        return JSON.parse(data.data)
+      })
   }
 
 }

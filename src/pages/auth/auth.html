@@ -15,11 +15,11 @@
 
 <ion-content padding>
 
-    <p *ngIf="!_register">
-      Already have an account?
-      <button ion-button (click)="toggleRegister(true);">Signup</button>
-    </p>
     <p *ngIf="_register">
+      Already have an account?
+      <button ion-button (click)="toggleRegister(true);">Login</button>
+    </p>
+    <p *ngIf="!_register">
       Don't have an account?
       <button ion-button (click)="toggleRegister(false);">Register</button>
     </p>
