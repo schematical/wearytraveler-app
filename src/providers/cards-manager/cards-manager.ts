@@ -2,6 +2,7 @@ import { HTTP } from '@ionic-native/http';
 import { Injectable } from '@angular/core';
 import { ENV } from '@environment';
 import { AuthProvider } from '../auth/auth';
+import * as _ from 'underscore';
 
 /*
   Generated class for the CardsManagerProvider provider.
@@ -11,7 +12,12 @@ import { AuthProvider } from '../auth/auth';
 */
 @Injectable()
 export class CardsManagerProvider {
-
+  public SUITS = {
+    H:'H',
+    D:'D',
+    C:'C',
+    S:'S'
+  }
   constructor(public http: HTTP, public authProvider: AuthProvider) {
     console.log('Hello CardsManagerProvider Provider');
   }
@@ -33,7 +39,10 @@ export class CardsManagerProvider {
 
     return this.http.get(ENV.API_ENDPOINT + '/decks/' + deckId + '/cards', {}, {})
       .then((data)=>{
-        return JSON.parse(data.data)
+        let cards = JSON.parse(data.data);
+        cards = this.parseCards(cards);
+        cards = _.shuffle(cards);
+        return cards;
       })
   }
   saveDeck(deck){
@@ -63,6 +72,23 @@ export class CardsManagerProvider {
       .then((data)=>{
         return JSON.parse(data.data)
       })
+  }
+  parseCards(startCards){
+    let endCards = [];
+    startCards.forEach((card)=>{
+      if(card.suit !== "A"){
+        endCards.push(card);
+        return;
+      }
+      Object.keys(this.SUITS).forEach((suit)=>{
+        let newCard = _.clone(card);
+        newCard.suit = suit;
+        endCards.push(newCard)
+      });
+
+    })
+    console.log("New Card Length: ", endCards.length);
+    return endCards;
   }
 
 }

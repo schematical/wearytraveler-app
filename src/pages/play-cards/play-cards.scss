@@ -43,10 +43,13 @@ page-play-cards {
 .display-card-suit{
   position: absolute;
   top: 3%;
-  right: 0%;
-  width: 18%;
+  right: 8%;
+  width: 15%;
   height: 20%;
   font-size: 47Pt;
+}
+.display-card-suit img{
+  width:100%;
 }
 .display-card-number{
   position: absolute;
