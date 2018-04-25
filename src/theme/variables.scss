@@ -86,3 +86,11 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+@font-face {
+  font-family: IndieFlower;
+  src:  url('../assets/fonts/IndieFlower.ttf');
+}
+*{
+  font-family: IndieFlower;
+}
