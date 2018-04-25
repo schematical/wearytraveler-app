@@ -26,10 +26,16 @@
     </playing-card>
     <div class="display-card" *ngIf="displayCard" [style.left.px]="displayCard.dispPos.left" [style.top.px]="displayCard.dispPos.top"  >
       <div class="display-card-inside">
-        <div class="display-card-suit">
-          {{displayCard.number}} {{displayCard.suit}}
+        <div class="display-card-number">
+          {{displayCard.number}}
         </div>
-        <div class="display-card-rule">
+        <div class="display-card-suit">
+          {{displayCard.suit}}
+        </div>
+        <div class="display-card-rule-title">
+          Rule Title
+        </div>
+        <div class="display-card-rule-desc">
           {{displayCard.rule}}
         </div>
       </div>

@@ -196,7 +196,7 @@ export class PlayCardsPage {
      }
    }else if(this.displayCard.dispPos.phase == 1){
      this.displayCard.dispPos.wait += 1;
-     if(this.displayCard.dispPos.wait > 20 * 5){
+     if(this.displayCard.dispPos.wait > 20 * 45){
        this.displayCard.dispPos.phase = 2;
      }
 
