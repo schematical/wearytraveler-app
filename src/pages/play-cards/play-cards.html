@@ -24,6 +24,10 @@
     <playing-card  *ngFor="let card of cards" [card]="card">
 
     </playing-card>
+
+
+
+
     <div class="display-card" *ngIf="displayCard" [style.left.px]="displayCard.dispPos.left" [style.top.px]="displayCard.dispPos.top"  >
       <div class="display-card-inside">
         <div class="display-card-number">

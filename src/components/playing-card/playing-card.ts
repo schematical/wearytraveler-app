@@ -22,23 +22,6 @@ export class PlayingCardComponent {
 
 
   ngAfterViewInit() {
-    
-
-   /* let hammer = new window['Hammer'](this.element.nativeElement);
-    hammer.get('pan').set({ direction: window['Hammer'].DIRECTION_ALL });
-
-    hammer.on('pan', (e) => {
-      this.card._parent.panCard(e, this.card);
-    });
-
-    hammer.on('panend', (e) => {
-      console.log('panend');
-      this.card._parent.panEndCard(e, this.card);
-    });
-    hammer.on('pancancel', (e) => {
-      console.log('pancancel');
-      this.card._parent.panEndCard(e, this.card);
-    });*/
 
   }
 }

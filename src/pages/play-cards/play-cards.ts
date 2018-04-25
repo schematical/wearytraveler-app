@@ -25,6 +25,8 @@ export class PlayCardsPage {
   displayCard:any = null;
   screenHeight = 0;
   screenWidth = 0;
+  tmpXOffset = 0;
+  lastEndTimestamp = 0;
 
   constructor(public element: ElementRef, public navCtrl: NavController, public navParams: NavParams, public cardsManager: CardsManagerProvider, platform: Platform) {
     platform.ready().then((readySource) => {
@@ -67,7 +69,7 @@ export class PlayCardsPage {
   }
 
   getCardLeft(card){
-    let left =  card.left + this.xOffset - (this.selectedCard && this.selectedCard.panStart.xDiff || 0);
+    let left =  card.left + this.xOffset + this.tmpXOffset;
 
     return left;
   }
@@ -103,19 +105,23 @@ export class PlayCardsPage {
   }
   panCard(e) {
     let card = this.selectedCard;
-    if(!card){
-      console.log("PANNING - no `this.selectedCard`");
-      return;
-    }
 
-    card.panStart.xDiff = e.deltaX * -1;//card.panStart.left - newLeft;
-    card.panStart.yDiff = e.deltaY * -1;//card.panStart.top - newTop;
-
-    console.log(card.panStart.left + ' / ' + card.panStart.top, ' --- x ' + Math.abs(card.panStart.xDiff) + ' > y ' + Math.abs(card.panStart.yDiff));
-    if(Math.abs(card.panStart.xDiff) > Math.abs(card.panStart.yDiff)){
+    if(Math.abs(e.deltaX) > Math.abs(e.deltaY)){
       //Move all cards
-      card.panStart.yDiff = 0;
+      if(card) {
+        card.panStart.yDiff = 0;
+      }
+      this.tmpXOffset = e.deltaX;
     }else{
+      if(!card){
+        console.log("PANNING - no `this.selectedCard`");
+        return;
+      }
+
+      card.panStart.xDiff = e.deltaX * -1;//card.panStart.left - newLeft;
+      card.panStart.yDiff = e.deltaY * -1;//card.panStart.top - newTop;
+
+
       card.panStart.xDiff = 0;
       //Draw this card
 
@@ -128,6 +134,19 @@ export class PlayCardsPage {
   }
   panEndCard(e, card?) {
 
+    if(e && this.lastEndTimestamp){
+      let diff = e.timeStamp - this.lastEndTimestamp;
+      console.log('diff', diff);
+      if(diff < 500 ){
+        this.tmpXOffset = 0;
+        return;
+      }
+    }
+
+    this.lastEndTimestamp = e && e.timeStamp || new Date().getTime();
+    this.xOffset += this.tmpXOffset;
+    this.tmpXOffset = 0;
+
     if(!card) {
       let newLeft = e.center.x;
       let newTop = e.center.y;
@@ -137,9 +156,9 @@ export class PlayCardsPage {
       return;
     }
     if(card.panStart) {
-      this.xOffset -= card.panStart.xDiff;
       card.panStart = null;
     }
+
     this.selectedCard = null;
 
   }
@@ -196,7 +215,7 @@ export class PlayCardsPage {
      }
    }else if(this.displayCard.dispPos.phase == 1){
      this.displayCard.dispPos.wait += 1;
-     if(this.displayCard.dispPos.wait > 20 * 45){
+     if(this.displayCard.dispPos.wait > 20 * 5){
        this.displayCard.dispPos.phase = 2;
      }
 
