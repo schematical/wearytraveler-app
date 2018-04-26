@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CardsManagerProvider } from '../../providers/cards-manager/cards-manager';
 import { GameOverPage } from '../game-over/game-over';
-
+import * as _ from 'underscore';
 import {Platform} from 'ionic-angular';
 /**
  * Generated class for the PlayCardsPage page.
@@ -42,7 +42,8 @@ export class PlayCardsPage {
 
     this.cardsManager.listCards(this.navParams.get('deck'))
       .then(cards => {
-
+        cards = this.cardsManager.parseCards(cards);
+        cards = _.shuffle(cards);
         this.cards = cards;
         this.cards.forEach((card, i)=>{
           card.width = this.screenWidth * .8;
@@ -215,7 +216,7 @@ export class PlayCardsPage {
      }
    }else if(this.displayCard.dispPos.phase == 1){
      this.displayCard.dispPos.wait += 1;
-     if(this.displayCard.dispPos.wait > 20 * 45){
+     if(this.displayCard.dispPos.wait > 20 * 10){
        this.displayCard.dispPos.phase = 2;
      }
 

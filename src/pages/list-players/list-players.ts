@@ -18,6 +18,13 @@ export class ListPlayersPage {
   players:Array<any> = [];
   newPlayer = null;
   constructor(public navCtrl: NavController, public navParams: NavParams, public gameManager: GameStateManagerProvider) {
+    this.gameManager.getPlayers()
+      .then((players:Array<any>)=>{
+        this.players = players;
+      })
+      .catch((err)=>{
+        console.error(err);
+      })
   }
 
   ionViewDidLoad() {
@@ -37,8 +44,15 @@ export class ListPlayersPage {
     })
   }
   startPlaying(){
-    this.gameManager.setPlayers(this.players);
-    this.navCtrl.push(PlayCardsPage, { deck: this.navParams.get('deck') })
+
+    return this.gameManager.setPlayers(this.players)
+      .then(()=>{
+        this.navCtrl.push(PlayCardsPage, { deck: this.navParams.get('deck') })
+      })
+      .catch((err)=>{
+        console.error(err);
+      })
+
   }
 
 }

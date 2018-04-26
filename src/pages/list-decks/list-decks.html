@@ -21,8 +21,8 @@
     <ion-item-sliding *ngFor="let deck of decks">
       <ion-item >
         {{deck.name}}
-        <button ion-button item-end (click)="playDeck(deck)">Play</button>
-        <button ion-button item-end (click)="listCards(deck)">View</button>
+        <button ion-button item-end large (click)="playDeck(deck)">Play</button>
+        <button ion-button item-end large  (click)="listCards(deck)">View</button>
       </ion-item>
       <!--<ion-item-options side="left">
         <button ion-button color="primary">
@@ -34,15 +34,15 @@
           Call
         </button>
       </ion-item-options>-->
-      <ion-item-options side="right">
+      <<!--ion-item-options side="right">
         <button ion-button color="primary">
           <ion-icon name="mail"></ion-icon>
           Edit
         </button>
-      </ion-item-options>
+      </ion-item-options>-->
     </ion-item-sliding>
   </ion-list>
-  <button ion-button color="primary" (click)="editDeck();">
+  <button ion-button color="primary" block (click)="editDeck();">
     Create your own deck
   </button>
 </ion-content>

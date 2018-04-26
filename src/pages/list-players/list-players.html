@@ -22,7 +22,7 @@
     </ion-item>
 
   </ion-list>
-  <button ion-button (click)="addPlayer();">Add</button>
+  <button ion-button (click)="addPlayer();" large block>Add</button>
 
   <ion-list inset>
     <ion-item-sliding *ngFor="let player of players">
@@ -38,5 +38,5 @@
     </ion-item-sliding>
   </ion-list>
 
-  <button ion-button (click)="startPlaying();">Play</button>
+  <button ion-button (click)="startPlaying();" large block>Play</button>
 </ion-content>

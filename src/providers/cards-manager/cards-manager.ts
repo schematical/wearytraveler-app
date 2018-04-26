@@ -40,8 +40,7 @@ export class CardsManagerProvider {
     return this.http.get(ENV.API_ENDPOINT + '/decks/' + deckId + '/cards', {}, {})
       .then((data)=>{
         let cards = JSON.parse(data.data);
-        cards = this.parseCards(cards);
-        cards = _.shuffle(cards);
+
         return cards;
       })
   }

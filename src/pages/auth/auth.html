@@ -17,11 +17,11 @@
 
     <p *ngIf="_register">
       Already have an account?
-      <button ion-button (click)="toggleRegister(true);">Login</button>
+      <button ion-button (click)="toggleRegister(true);" large>Login</button>
     </p>
     <p *ngIf="!_register">
       Don't have an account?
-      <button ion-button (click)="toggleRegister(false);">Register</button>
+      <button ion-button (click)="toggleRegister(false);" large>Register</button>
     </p>
     <ion-list>
 
@@ -38,10 +38,10 @@
     </ion-list>
 
     <div *ngIf="!_register" padding>
-      <button ion-button block (click)="login();">Sign In</button>
+      <button ion-button block (click)="login();" large>Sign In</button>
     </div>
     <div *ngIf="_register" padding>
-      <button ion-button block (click)="register();">Sign Up</button>
+      <button ion-button block (click)="register();" large>Sign Up</button>
     </div>
 
 </ion-content>

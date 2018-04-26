@@ -14,27 +14,29 @@ export class GameStateManagerProvider {
 
   constructor(public nativeStorage: NativeStorage, ) {
     console.log('Hello GameStateManagerProvider Provider');
-    this.nativeStorage.getItem('players')
-      .then(
-        data => {
-          console.log(data)
-          if(!data) {
-            return GameStateManagerProvider.players = [];
-          }
-          return GameStateManagerProvider.players = data;
-        },
-        error => {
-            console.error(error)
-        }
-      );
+
+  }
+  getPlayers(){
+    return new Promise((resolve, reject) => {
+      this.nativeStorage.getItem('players')
+        .then(
+          data => {
+            GameStateManagerProvider.players = data || [];
+            return resolve(GameStateManagerProvider.players)
+          },
+          reject
+        );
+    });
   }
   setPlayers(players){
     GameStateManagerProvider.players = players;
-    this.nativeStorage.setItem('players', GameStateManagerProvider.players)
-      .then(
-        () => console.log('Stored item!'),
-        error => console.error('Error storing item', error)
-      );
+    return new Promise((resolve, reject) => {
+      return this.nativeStorage.setItem('players', GameStateManagerProvider.players)
+        .then(
+          resolve,
+          reject
+        );
+    });
 
 
   }

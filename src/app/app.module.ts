@@ -8,14 +8,15 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { ListDecksPage } from '../pages/list-decks/list-decks';
-import { EditDeckPage } from '../pages/edit-deck/edit-deck';
-import { ListPlayersPage } from '../pages/list-players/list-players';
-import { PlayCardsPage } from '../pages/play-cards/play-cards';
-import { GameOverPage } from '../pages/game-over/game-over';
-import { ListCardsPage } from '../pages/list-cards/list-cards';
-import { EditCardPage } from '../pages/edit-card/edit-card';
-import { AuthPage } from '../pages/auth/auth';
+
+import { ListDecksPageModule } from '../pages/list-decks/list-decks.module';
+import { EditDeckPageModule } from '../pages/edit-deck/edit-deck.module';
+import { ListPlayersPageModule } from '../pages/list-players/list-players.module';
+import { PlayCardsPageModule } from '../pages/play-cards/play-cards.module';
+import { GameOverPageModule } from '../pages/game-over/game-over.module';
+import { ListCardsPageModule } from '../pages/list-cards/list-cards.module';
+import { EditCardPageModule } from '../pages/edit-card/edit-card.module';
+import { AuthPageModule } from '../pages/auth/auth.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,21 +34,22 @@ import { NativeStorage } from '@ionic-native/native-storage';
     ContactPage,
     HomePage,
     TabsPage,
-    ListDecksPage,
-    ListPlayersPage,
-    PlayCardsPage,
-    GameOverPage,
-    ListCardsPage,
-    AuthPage,
-    EditCardPage,
-    EditDeckPage
+
 
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     ComponentsModule,
-    CommonModule
+    CommonModule,
+    ListDecksPageModule,
+    ListPlayersPageModule,
+    PlayCardsPageModule,
+    GameOverPageModule,
+    ListCardsPageModule,
+    AuthPageModule,
+    EditCardPageModule,
+    EditDeckPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,14 +58,14 @@ import { NativeStorage } from '@ionic-native/native-storage';
     ContactPage,
     HomePage,
     TabsPage,
-    ListDecksPage,
+   /* ListDecksPage,
     ListPlayersPage,
     PlayCardsPage,
     GameOverPage,
     ListCardsPage,
-    AuthPage,
+    //AuthPage,
     EditCardPage,
-    EditDeckPage
+    EditDeckPage*/
   ],
   providers: [
     StatusBar,

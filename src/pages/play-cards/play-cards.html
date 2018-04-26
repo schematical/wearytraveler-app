@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>playCards</ion-title>
+    <ion-title>Play</ion-title>
   </ion-navbar>
   <ion-buttons end>
     <button ion-button icon-only (click)="endGame()">
@@ -37,7 +37,7 @@
           <img src="assets/imgs/{{displayCard.suit}}.png" />
         </div>
         <div class="display-card-rule-title">
-          Rule Title
+          {{displayCard.title}}
         </div>
         <div class="display-card-rule-desc">
           {{displayCard.rule}}
