@@ -203,6 +203,23 @@ export class PlayCardsPage {
     }
     this.selectCard(card);
   }
+  swipeCard(e){
+    if(e.direction !== window['Hammer'].DIRECTION_UP){
+      return;
+    }
+    console.log(e);
+    let newLeft = e.center.x;
+    let newTop = e.center.x;
+    //if(!card) {
+    let card = this.getCardByCoords(newLeft, newTop);
+    if(!card){
+      return;
+    }
+    if(this.displayCard && this.displayCard.dispPos.phase === 0){
+      return;
+    }
+    this.selectCard(card);
+  }
   selectCard(card){
     this.panEndCard(null, card);
     card.hasBeenDrawn = true;

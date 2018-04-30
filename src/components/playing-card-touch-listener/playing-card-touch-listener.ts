@@ -16,12 +16,14 @@ export class PlayingCardTouchListenerComponent {
   @Output() panEnd = new EventEmitter<boolean>();
   @Output() panStart = new EventEmitter<boolean>();
   @Output() dblclick = new EventEmitter<boolean>();
+  @Output() swipe = new EventEmitter<boolean>();
   constructor(public element: ElementRef) {
 
   }
   ngAfterViewInit() {
     let hammer = new window['Hammer'](this.element.nativeElement);
     hammer.get('pan').set({direction: window['Hammer'].DIRECTION_ALL});
+    hammer.get('swipe').set({direction: window['Hammer'].DIRECTION_ALL});
 
     hammer.on('pan', (e) => {
       this.pan.emit(e);
@@ -39,6 +41,10 @@ export class PlayingCardTouchListenerComponent {
     hammer.on('pancancel', (e) => {
       console.log('pancancel');
       this.panEnd.emit(e);
+    });
+    hammer.on('swipe', (e) => {
+      console.log('swipe');
+      this.swipe.emit(e);
     });
   }
   onDblclick($event){

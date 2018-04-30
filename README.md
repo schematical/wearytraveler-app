@@ -14,3 +14,8 @@ cd platforms/android/build/outputs/apk/
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../../../../../my-release-key.jks android-release-unsigned.apk schematical
  ~/Android/Sdk/build-tools/25.0.3/zipalign -v 4 android-release-unsigned.apk WearyTraveler.apk
 ```
+
+
+## Future Notes:
+### In App Purchases:
+https://medium.com/@andrew.thielcole/in-app-purchases-with-ionic-3-af13b21f49f2
