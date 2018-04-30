@@ -18,7 +18,7 @@
 
 
 <ion-content no-bounce class="no-scroll" fullscreen>
-    <playing-card-touch-listener (pan)="panCard($event)" (panEnd)="panEndCard($event);" (panStart)="panStartCard($event)"></playing-card-touch-listener>
+    <playing-card-touch-listener (pan)="panCard($event)" (panEnd)="panEndCard($event);" (panStart)="panStartCard($event)" (dblclick)="dblclickCard($event);"></playing-card-touch-listener>
 
 
     <playing-card  *ngFor="let card of cards" [card]="card">

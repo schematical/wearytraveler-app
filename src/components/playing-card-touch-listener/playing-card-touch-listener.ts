@@ -15,6 +15,7 @@ export class PlayingCardTouchListenerComponent {
   @Output() pan = new EventEmitter<boolean>();
   @Output() panEnd = new EventEmitter<boolean>();
   @Output() panStart = new EventEmitter<boolean>();
+  @Output() dblclick = new EventEmitter<boolean>();
   constructor(public element: ElementRef) {
 
   }
@@ -39,6 +40,9 @@ export class PlayingCardTouchListenerComponent {
       console.log('pancancel');
       this.panEnd.emit(e);
     });
+  }
+  onDblclick($event){
+    this.dblclick.emit($event);
   }
 
 }

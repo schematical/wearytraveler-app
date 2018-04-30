@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>listCards</ion-title>
+    <ion-title>Cards</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,12 +19,12 @@
 
       <h2 style="font-size: 6.6rem;">
         {{ card.number }} of
-        <img *ngIf="card.suit !== 'A'" src="../assets/imgs/{{card.suit}}.png">
+        <img *ngIf="card.suit !== 'A'" src="assets/imgs/{{card.suit}}.png">
         <span *ngIf="card.suit === 'A'" >
-          <img src="../assets/imgs/S.png">
-          <img src="../assets/imgs/D.png">
-          <img src="../assets/imgs/H.png">
-          <img src="../assets/imgs/C.png">
+          <img src="assets/imgs/S.png">
+          <img src="assets/imgs/D.png">
+          <img src="assets/imgs/H.png">
+          <img src="assets/imgs/C.png">
         </span>
       </h2>
 

@@ -1,8 +1,8 @@
 {
-    "name": "ionic-app-base",
+    "name": "weary-traveler-game",
     "version": "0.0.0",
-    "author": "Ionic Framework",
-    "homepage": "http://ionicframework.com/",
+    "author": "Schematical",
+    "homepage": "http://schematiacl.com/",
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",

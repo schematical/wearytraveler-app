@@ -46,11 +46,12 @@ export class PlayCardsPage {
         cards = _.shuffle(cards);
         this.cards = cards;
         this.cards.forEach((card, i)=>{
+          card.i = i;
           card.width = this.screenWidth * .8;
           card.height = card.width / this.CARD_WIDTH * this.CARD_HEIGHT;
 
           card.bottom = this.screenHeight * .1;
-          card.left = card.width * .5 * i;
+          card.left = card.width * .3 * i;
           card._parent = this;
           card.hasBeenDrawn = false;
         })
@@ -137,7 +138,6 @@ export class PlayCardsPage {
 
     if(e && this.lastEndTimestamp){
       let diff = e.timeStamp - this.lastEndTimestamp;
-      console.log('diff', diff);
       if(diff < 500 ){
         this.tmpXOffset = 0;
         return;
@@ -169,16 +169,39 @@ export class PlayCardsPage {
       let baseX = this.getCardLeft(card);
       let baseY = this.getCardBottom(card);
       if(
-        !card.hasBeenDrawn &&
-        x > baseX &&
-        x < baseX + card.width
+
+        x < baseX||
+        x > baseX + card.width
        /* y > (this.screenHeight - baseY + card.height &&
         y < this.screenHeight - baseY */
       ){
-        cards.push(card);
+       return;
       }
+
+      if(card.hasBeenDrawn){
+        console.log(card.i + ' has been drawn');
+        return;
+      }
+      cards.push(card);
     })
-    return cards[cards.length - 1] || null;
+    cards = _.sortBy(cards, (card)=>{
+
+      return 0 - card.i;
+    })
+    return cards[0] || null;
+  }
+  dblclickCard(e){
+    let newLeft = e.screenX;
+    let newTop = e.screenY;
+    //if(!card) {
+    let card = this.getCardByCoords(newLeft, newTop);
+    if(!card){
+      return;
+    }
+    if(this.displayCard && this.displayCard.dispPos.phase === 0){
+      return;
+    }
+    this.selectCard(card);
   }
   selectCard(card){
     this.panEndCard(null, card);

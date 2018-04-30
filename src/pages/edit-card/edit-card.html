@@ -28,10 +28,10 @@
     <ion-item>
       <ion-label>
         All
-        <img src="../assets/imgs/S.png">
-        <img src="../assets/imgs/D.png">
-        <img src="../assets/imgs/H.png">
-        <img src="../assets/imgs/C.png">
+        <img src="assets/imgs/S.png">
+        <img src="assets/imgs/D.png">
+        <img src="assets/imgs/H.png">
+        <img src="assets/imgs/C.png">
       </ion-label>
       <ion-checkbox [(ngModel)]="_all" (change)="changeSuit('A');"></ion-checkbox>
     </ion-item>
@@ -40,21 +40,21 @@
 
 
       <ion-item>
-        <ion-label>Spade <img *ngIf="card.suit !== 'A'" src="../assets/imgs/S.png"></ion-label>
+        <ion-label>Spade <img *ngIf="card.suit !== 'A'" src="assets/imgs/S.png"></ion-label>
         <ion-checkbox (ionChange)="changeSuit('S');"><!--[(ngModel)]="spade">--></ion-checkbox>
       </ion-item>
       <ion-item>
-        <ion-label>Heart <img *ngIf="card.suit !== 'A'" src="../assets/imgs/H.png"></ion-label>
+        <ion-label>Heart <img *ngIf="card.suit !== 'A'" src="assets/imgs/H.png"></ion-label>
         <ion-checkbox (ionChange)="changeSuit('H');"><!--[(ngModel)]="heart">--></ion-checkbox>
       </ion-item>
 
       <ion-item>
-        <ion-label>Diamond <img *ngIf="card.suit !== 'A'" src="../assets/imgs/D.png"></ion-label>
+        <ion-label>Diamond <img *ngIf="card.suit !== 'A'" src="assets/imgs/D.png"></ion-label>
         <ion-checkbox (ionChange)="changeSuit('D');"><!--[(ngModel)]="diamond">--></ion-checkbox>
       </ion-item>
 
       <ion-item>
-        <ion-label>Club <img *ngIf="card.suit !== 'A'" src="../assets/imgs/C.png"></ion-label>
+        <ion-label>Club <img *ngIf="card.suit !== 'A'" src="assets/imgs/C.png"></ion-label>
         <ion-checkbox (ionChange)="changeSuit('C');"><!--[(ngModel)]="club">--></ion-checkbox>
       </ion-item>
     </ion-item-group>

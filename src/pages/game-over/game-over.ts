@@ -26,7 +26,7 @@ export class GameOverPage {
     console.log('ionViewDidLoad GameOverPage');
   }
   share(){
-    this.socialSharing.share("We just played an awesome game of Weary Traveler", 'Life is fun and games!', null, 'http://shiporgetoffthepot.com')
+    this.socialSharing.share("We just played an awesome game of Weary Traveler", 'Life is fun and games!', null, 'http://bit.ly/wearytraveler')
   }
   donate(){
     console.log("Donate");
